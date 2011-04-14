@@ -1,0 +1,22 @@
+feature-model	config/features.xml
+connection-model	config/connections.xml
+train-set	data/CoNLL2009-ST-English-trial.txt #data/CoNLL2009-ST-English-train-projectivized
+dev-set	data/CoNLL2009-ST-English-trial.txt #data/CoNLL2009-ST-English-development-projectivized
+test-set	data/CoNLL2009-ST-English-trial.txt #CoNLL2009-ST-English-test
+parser-output	output/parser-output
+lexicon	models/lexicon.xml
+learning-model	models/Learning.model.xml
+parser-params	models/Parsing.params.xml
+word-repr	output/word-repr
+tmp-dir	tmp
+hidden-variables	100
+beam-size	10
+label-branch-size	1
+max-train-iter	100
+learning-rate-init	0.005
+learning-rate-red-rate	0.5
+learning-rate-max-red	0.001
+weight-decay-init	0.08
+weight-decay-red-rate	0.5
+weight-decay-max-red	1e-05
+momemtum	0.9

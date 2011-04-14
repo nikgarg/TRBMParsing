@@ -1,0 +1,11 @@
+<connectionmodels>
+	<connectionmodel name="connections">
+		<connection><feature location="present">InputColumn(ID,Input[0])</feature><feature location="past">InputColumn(ID,Input[0])</feature></connection>
+		<connection><feature location="present">InputColumn(ID,Stack[0])</feature><feature location="past">InputColumn(ID,Stack[0])</feature></connection>
+		<connection><feature location="present">InputColumn(ID,rrdep(Stack[0]))</feature><feature location="past">InputColumn(ID,Stack[0])</feature></connection>
+		<connection><feature location="present">InputColumn(ID,lldep(Stack[0]))</feature><feature location="past">InputColumn(ID,Stack[0])</feature></connection>
+		<connection><feature location="present">InputColumn(ID,head(Stack[0]))</feature><feature location="past">InputColumn(ID,Stack[0])</feature></connection>
+		<connection><feature location="present">InputColumn(ID,ldep(Input[0]))</feature><feature location="past">InputColumn(ID,Stack[0])</feature></connection>
+		<connection><feature location="present">InputColumn(ID,Stack[0])</feature><feature location="past">InputColumn(ID,Input[0])</feature><offset>1</offset></connection>
+	</connectionmodel>
+</connectionmodels>

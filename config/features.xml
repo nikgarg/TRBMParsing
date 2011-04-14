@@ -1,0 +1,16 @@
+<featuremodels>
+	<featuremodel name="inputs">
+                <feature>InputColumn(FORM,Stack[0])</feature>
+                <feature>InputColumn(FORM,Input[0])</feature>
+                <feature>InputColumn(FORM,head(Stack[0]))</feature>
+                <feature>InputColumn(PLEMMA,Stack[0])</feature>
+                <feature>InputColumn(PLEMMA,Input[0])</feature>
+                <feature>InputColumn(PPOS,Stack[0])</feature>
+                <feature>InputColumn(PPOS,Input[0])</feature>
+                <feature>InputColumn(PPOS,Stack[1])</feature>
+                <feature>OutputColumn(DEPREL,Stack[0])</feature>
+                <feature>OutputColumn(DEPREL,ldep(Stack[0]))</feature>
+                <feature>OutputColumn(DEPREL,rdep(Stack[0]))</feature>
+                <feature>OutputColumn(DEPREL,ldep(Input[0]))</feature>
+	</featuremodel>
+</featuremodels>
