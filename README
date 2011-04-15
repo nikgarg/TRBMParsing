@@ -1,0 +1,38 @@
+Instructions to run the code:
+
+Assuming that the code resides in the directory "TRBMParsing" and malt parser is in the directory "/path/to/malt/malt-1.4.1"
+
+
+1. Projectivize the training data
+	a) TRBMParsing/data> java -jar /path/to/malt/malt-1.4.1/malt.jar -c pproj -m proj -if /path/to/malt/malt-1.4.1/appdata/dataformat/conll2009.xml -i CoNLL2009-ST-English-train -o tmp.1 -pp head+path -pcr head
+	b) TRBMParsing/data> cut -f4,6 -d '	' CoNLL2009-ST-English-train > tmp.2
+	c) TRBMParsing/data> paste tmp.2 tmp.1 | perl -ne 'chomp; @a=split(/\t/); $a[5]=$a[0]; $a[7]=$a[1]; for($i=2;$i<$#a;$i++){print $a[$i],"\t";} print $a[$#a],"\n";' > CoNLL2009-ST-English-train-projectivized
+	d) TRBMParsing/data> rm tmp.1 tmp.2
+
+2. Projectivize the development data
+	a) TRBMParsing/data> java -jar /path/to/malt/malt-1.4.1/malt.jar -c pproj -m proj -if /path/to/malt/malt-1.4.1/appdata/dataformat/conll2009.xml -i CoNLL2009-ST-English-development -o tmp.1 -pp head+path -pcr head
+	b) TRBMParsing/data> cut -f4,6 -d '	' CoNLL2009-ST-English-development > tmp.2
+	c) TRBMParsing/data> paste tmp.2 tmp.1 | perl -ne 'chomp; @a=split(/\t/); $a[5]=$a[0]; $a[7]=$a[1]; for($i=2;$i<$#a;$i++){print $a[$i],"\t";} print $a[$#a],"\n";' > CoNLL2009-ST-English-development-projectivized
+	d) TRBMParsing/data> rm tmp.1 tmp.2
+
+3. Modify the configuration file as needed: TRBMParsing> cat config/config
+
+4. Compile the code
+	a) TRBMParsing> make clean
+	b) TRBMParsing> make
+
+5. Run the code
+	Usage: bin/main <config_file> <train/test/train,test> <(train new?)yes <FF/TRBM>/no>
+	Examples:
+	a) Training and testing: TRBMParsing> bin/main config/config train,test yes TRBM > output/output
+	b) Only training: TRBMParsing> bin/main config/config train yes TRBM > output/output
+	c) Only testing: TRBMParsing> bin/main config/config test no > output/output
+	d) Resuming training from an earlier point: TRBMParsing> bin/main config/config train no > output/output
+
+6. Deprojectivize the parser output
+	a) TRBMParsing> cp output/parser_output data/
+	b) TRBMParsing/data> java -jar /path/to/malt/malt-1.4.1/malt.jar -c pproj -m deproj -i parser_output -o deprojectivized
+
+7. Run the evaluation script
+	a) TRBMParsing> perl src/eval09.pl -p -g data/CoNLL2009-ST-English-evaluation -s data/deprojectivized > output/scores
+

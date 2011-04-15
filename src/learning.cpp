@@ -376,7 +376,7 @@ string LearningModel::to_string()
 
   result<<"Learning Model:\n"
 	<<"Model type: "<<(isTRBM?"TRBM":"FF")<<"\n"
-	<<"TRBM Training"<<(useCD?"Constrastive Divergence":"Direct Gradient")<<"\n"
+	<<"TRBM Training: "<<(useCD?"Constrastive Divergence":"Direct Gradient")<<"\n"
 	<<"learning rate: "<<learning_rate<<"\n"
 	<<"weight decay:  "<<weight_decay<<"\n"
 	<<"momentum:      "<<momentum<<"\n"
