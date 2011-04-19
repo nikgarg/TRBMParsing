@@ -30,8 +30,8 @@ Assuming that the code resides in the directory "TRBMParsing" and malt parser is
 	d) Resuming training from an earlier point: TRBMParsing> bin/main config/config train no > output/output
 
 6. Deprojectivize the parser output
-	a) TRBMParsing> cp output/parser_output data/
-	b) TRBMParsing/data> java -jar /path/to/malt/malt-1.4.1/malt.jar -c pproj -m deproj -i parser_output -o deprojectivized
+	a) TRBMParsing> cp output/parser-output data/
+	b) TRBMParsing/data> java -jar /path/to/malt/malt-1.4.1/malt.jar -c pproj -m deproj -i parser-output -o deprojectivized
 
 7. Run the evaluation script
 	a) TRBMParsing> perl src/eval09.pl -p -g data/CoNLL2009-ST-English-evaluation -s data/deprojectivized > output/scores
