@@ -2,7 +2,7 @@ feature-model	config/features.xml
 connection-model	config/connections.xml
 train-set	data/CoNLL2009-ST-English-trial.txt #data/CoNLL2009-ST-English-train-projectivized
 dev-set	data/CoNLL2009-ST-English-trial.txt #data/CoNLL2009-ST-English-development-projectivized
-test-set	data/CoNLL2009-ST-English-trial.txt #CoNLL2009-ST-English-test
+test-set	data/CoNLL2009-ST-English-trial.txt #data/CoNLL2009-ST-English-test
 parser-output	output/parser-output
 lexicon	models/lexicon.xml
 learning-model	models/Learning.model.xml
