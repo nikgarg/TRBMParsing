@@ -593,6 +593,13 @@ void LearningModel::set_RBM_output_marginalized(vector<Layer*> visible_layers, v
       gsl_vector* X = gsl_vector_alloc(visible_layers[v]->n_nodes);
       for(h=0;h<hidden_layers.size();h++)
 	{
+	  if(v!=0)
+	    {
+	      gsl_vector* Y = gsl_vector_alloc(hidden_layers[h]->n_nodes);
+	      gsl_matrix_get_col(Y, W_RBM[hidden_layers[h]->type][visible_layers[v-1]->type], visible_layers[v-1]->target_id);
+	      gsl_vector_add(hidden_layers_bias[h], Y);
+	      gsl_vector_free(Y);
+	    }
 	  for(i=0;i<(unsigned int)hidden_layers[h]->n_nodes;i++)
 	    {
 	      gsl_matrix_get_row(X, W_RBM[hidden_layers[h]->type][visible_layers[v]->type], i);
@@ -626,8 +633,7 @@ void LearningModel::set_RBM_output_marginalized(vector<Layer*> visible_layers, v
 	  double x = gsl_vector_get(visible_layers[v]->output, j);
 	  x -= sum;
 	  gsl_vector_set(visible_layers[v]->output, j, exp(x));
-	}
-     
+	}     
     }
 
   for(v=0;v<visible_layers.size();v++)
@@ -986,9 +992,17 @@ void LearningModel::TRBM_direct_gradient(vector<Layer*> visible_layers, vector<L
       gsl_vector* S = gsl_vector_alloc(visible_layers[v]->n_nodes);
       for(h=0;h<hidden_layers.size();h++)
 	{
+	  if(v!=0)
+	    {
+	      gsl_vector* Y = gsl_vector_alloc(hidden_layers[h]->n_nodes);
+	      gsl_matrix_get_col(Y, W_RBM[hidden_layers[h]->type][visible_layers[v-1]->type], visible_layers[v-1]->target_id);
+	      gsl_vector_add(hidden_layers_bias[h], Y);
+	      gsl_vector_free(Y);
+	    }
+
 	  gsl_vector* dE_dBias = gsl_vector_alloc(hidden_layers[h]->n_nodes);
 	  for(i=0;i<hidden_layers[h]->n_nodes;i++)
-	    {      
+	    {
 	      gsl_matrix_get_row(S, W_RBM[hidden_layers[h]->type][visible_layers[v]->type], i);
 	      gsl_vector_add_constant(S, gsl_vector_get(hidden_layers_bias[h],i));
 	      sigmoid(S);
