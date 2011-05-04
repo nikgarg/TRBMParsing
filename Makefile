@@ -19,15 +19,6 @@ main: ${OBJFILES}
 ${OBJDIR}/%.o: ${SRCDIR}/%.cpp ${INCDIR}/%.h 
 	${GCC} ${FLAGS} ${INCLUDE} -c $< -o $@
 
-${INCDIR}/parsetree.h: 
-${INCDIR}/sentence.h: ${INCDIR}/parsetree.h
-${INCDIR}/data.h: ${INCDIR}/sentence.h
-${INCDIR}/evaluator.h: ${INCDIR}/parsetree.h
-${INCDIR}/state.h: ${INCDIR}/parsetree.h
-${INCDIR}/learning.h: ${INCDIR}/state.h
-${INCDIR}/parser.h: ${INCDIR}/state.h ${INCDIR}/learning.h ${INCDIR}/data.h ${INCDIR}/parsetree.h ${INCDIR}/evaluator.h
-${INCDIR}/main.h: ${INCDIR}/parser.h
-
 .PHONY: clean
 
 clean:
