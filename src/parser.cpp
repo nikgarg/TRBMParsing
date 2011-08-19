@@ -172,7 +172,8 @@ Parser::Parser(unordered_map<string,string> _params, bool train_new, string mode
       for(unsigned i=0;i<data->id2pos.size();i++)
 	{
 	  sprintf(buf, "LEX-%d",i);
-	  decisions2id[string(buf)] = decisions2id.size();
+          int decid = decisions2id.size();
+	  decisions2id[string(buf)] = decid;
 	  decision_size[decisions2id[string(buf)]] = data->id2lex[i].size();
 	}
       learning_model = new LearningModel(model_type, atoi(params["hidden-variables"].c_str()), feature_model->features.size(), connection_model->connections.size(), &decision_size);
@@ -188,7 +189,8 @@ Parser::Parser(unordered_map<string,string> _params, bool train_new, string mode
       for(unsigned i=0;i<data->id2pos.size();i++)
 	{
 	  sprintf(buf, "LEX-%d",i);
-	  decisions2id[string(buf)] = decisions2id.size();
+          int decid = decisions2id.size();
+	  decisions2id[string(buf)] = decid;
 	  decision_size[decisions2id[string(buf)]] = data->id2lex[i].size();
 	}
       learning_model = new LearningModel(params["learning-model"]);
